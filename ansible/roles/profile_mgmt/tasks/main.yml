@@ -1,0 +1,29 @@
+---
+
+- name: Task1
+  block:
+  - name: Adding timeout
+    blockinfile:
+      path: /etc/profile
+      insertafter: EOF
+      backup: yes
+      state: present
+      block: |
+        export TMOUT=900
+  - name: Task2
+    lineinfile:
+      path: /etc/profile
+      regex: "^umask"
+      line: "{{ line1 }}"
+      state: present
+  rescue:
+  - name: Rescue task
+    lineinfile:
+      path: ~/.bash_profile
+      regex: "^umask"
+      line: "{{ line2 }}"
+      state: present
+  always:
+  - name: always task
+    debug:
+      msg: Playbook execution completed.

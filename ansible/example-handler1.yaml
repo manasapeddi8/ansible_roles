@@ -1,0 +1,29 @@
+---
+
+- name: This play will perform handlers tasks
+  hosts: ansible8214-c-vm2
+  tasks:
+    - name: Task1
+      yum:
+        name: httpd, mariadb-server
+        state: latest
+    - name: Task2
+      systemd:
+        name: httpd
+        enabled: true
+      notify: restart_apache2
+    - name: task3
+      systemd:
+        name: mariadb
+        enabled: true
+      notify: restart_mariadb
+
+  handlers:
+   - name: restart_apache2
+     systemd:
+       name: httpd
+       state: restarted
+   - name: restart_mariadb
+     systemd:
+       name: mariadb
+       state: restarted

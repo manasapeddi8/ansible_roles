@@ -1,0 +1,24 @@
+---
+
+- name: This play will perform handlers tasks
+  hosts: ansible8214-c-vm1
+  tasks:
+    - name: Task1
+      yum:
+        name: httpd
+        state: latest
+    - name: Task2
+      copy:
+        src: index.html
+        dest: /var/www/html
+    - name: Task3
+      systemd:
+        name: httpd
+        enabled: true
+      notify: restart_apache2
+
+  handlers:
+   - name: restart_apache2
+     systemd:
+       name: httpd
+       state: restarted

@@ -1,0 +1,30 @@
+---
+
+- name: This play will perform handlers tasks
+  hosts: ansible8214-c-vm1
+  tasks:
+    - name: Task1
+      file:
+        path: locfile
+        state: touch
+    - name: Task2
+      copy:
+        src: locfile
+        dest: /tmp/
+        owner: auto
+        mode: '0444'
+    - name: Task3
+      file:
+        path: /tmp/locfile
+        setype: etc_t
+    - name: Task4
+      stat:
+        path: /tmp/locfile
+      register: otp
+    - name: Task5
+      debug:
+        var: otp
+    - name: Task6
+      file:
+        path: emptyfile
+        state: touch

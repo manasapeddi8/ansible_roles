@@ -1,0 +1,7 @@
+---
+# vars file for package_remove
+packagelist:
+ - cifs-utils
+ - nfs-utils
+ - audit
+ - chrony

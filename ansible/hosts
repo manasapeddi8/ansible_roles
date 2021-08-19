@@ -1,0 +1,11 @@
+
+[linux]
+ansible8214-c-vm1
+ansible8214-c-vm2
+
+[windows]
+ansi8214-w-vm1
+
+[os:children]
+linux
+windows

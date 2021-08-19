@@ -1,0 +1,9 @@
+---
+# tasks file for package_remove
+- name: This task does package installations
+  yum:
+    name: "{{ packagelist }}"
+    update_only: true
+    state: latest
+  when: ansible_distribution == "RedHat" or ansible_distribution == "CentOS"
+  notify: reboot-server

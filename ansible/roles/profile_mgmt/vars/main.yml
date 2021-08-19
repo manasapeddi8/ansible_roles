@@ -1,0 +1,4 @@
+---
+# vars file for profile_mgmt
+line1: "umask 0077"
+line2: "umask 0066"
